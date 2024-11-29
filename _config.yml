@@ -1,6 +1,6 @@
 title: "Quantum Frontiers: Explorations in Physics and Computing"
 author: "Antonios M. Alvertis"
-description: "Antonios M. Alvertis - Researcher in computational condensed matter physics, quantum computing, and quantum materials."
+description: "Research in computational condensed matter physics and quantum computing"
 permalink: /:title/
 lang: "en"
 excerpt_separator: "\n\n\n"
@@ -13,12 +13,6 @@ show_frame: true           # adds a gray frame to the site
 show_sidebar: false        # show a sidebar instead of the usual header
 minimal: false             # use a dark header
 
-# SEO Additions
-seo_title: "Antonios M. Alvertis | Computational Condensed Matter Physics & Quantum Computing"
-keywords: "Antonios Alvertis, quantum computing, computational physics, condensed matter physics, research"
-url: "https://amalvertis.github.io"
-baseurl: ""
-
 # Menu
 
 navigation:                # accepts {file, title, url, icon, sidebaricon}
@@ -29,12 +23,3 @@ navigation:                # accepts {file, title, url, icon, sidebaricon}
 
 external:                  # shows a footer with social links - for available icons see fontawesome.com/icons
   - {title: Mail, icon: envelope, url: "mailto:alvert92@gmail.com"}
-  - {title: Github, icon: github, url: "https://github.com/amalvertis"}
-  - {title: Subscribe, icon: rss, url: "/feed.xml"}
-
-comments:
-#  disqus_shortname: ""    # see https://disqus.com/
-#  isso_domain: ""         # see https://posativ.org/isso/
-
-plugins:
- - jekyll-feed
