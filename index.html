@@ -1,20 +1,961 @@
----
-layout: page
-title: "Antonios M. Alvertis"
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alvertis Research Group · UT Austin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&family=Inconsolata:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<div class="content" style="display: flex; align-items: center;">
-  <!-- Image -->
-  <img src="/images/profile.jpg" alt="Antonios M. Alvertis" style="width: 200px; height: auto; margin-right: 20px;">
-  
-  <!-- Text Content -->
-  <div>
-    <h1>Welcome</h1>
-    <p>
-      I am an assistant professor at the Department of Physics and the Oden Institute for Computational Engineering & Sciences, of the University of Texas at Austin. My background is in theoretical and computational condensed matter physics. I received my Ph.D. at the University of Cambridge, UK in 2021, and I was a postdoctoral researcher at the University of California Berkeley and Lawrence Berkeley National lab between 2021 and 2023. Between 2023 and 2025 I was a research scientist at the NASA Ames Research Center. 
-    </p>
-    <p>
-      I am interested in understanding the complex physics that arises in the microscopic scales of materials, where the principles of quantum mechanics dominate. My theoretical work goes hand in hand with using computing technologies, including quantum computing and classical high-performance computing on powerful supercomputers.
-    </p>
+    :root {
+      --ink:        #1a1714;
+      --ink-soft:   #3d3830;
+      --ink-muted:  #7a7065;
+      --cream:      #f7f4ef;
+      --parchment:  #ede8df;
+      --rule:       #c9c0b3;
+      --gold:       #8b6914;
+      --gold-light: #b8922a;
+      --accent:     #2e4a6b;
+      --accent-soft:#d6e0ec;
+      --burnt:      #bf4e0a;
+      --serif:      'EB Garamond', Georgia, serif;
+      --display:    'Cormorant Garamond', Georgia, serif;
+      --body:       'Source Serif 4', Georgia, serif;
+      --mono:       'Inconsolata', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--ink);
+      color: var(--cream);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .header-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .site-wordmark {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--cream);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .site-wordmark span { color: var(--gold-light); }
+
+    nav { display: flex; }
+
+    nav a {
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #c8bfb0;
+      text-decoration: none;
+      padding: 0 0.9rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -3px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    nav a:hover { color: var(--cream); border-color: var(--gold-light); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 5.5rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.025) 39px, rgba(255,255,255,0.025) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.025) 39px, rgba(255,255,255,0.025) 40px);
+      pointer-events: none;
+    }
+
+    .hero-ornament {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 1.4rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.1s forwards;
+    }
+
+    .hero h1 {
+      font-family: var(--display);
+      font-size: clamp(2.6rem, 6vw, 4.4rem);
+      font-weight: 300;
+      line-height: 1.12;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.25s forwards;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-family: var(--display);
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #9db3c8;
+      margin-top: 0.6rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.35s forwards;
+    }
+
+    .hero-rule {
+      width: 56px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.8rem auto;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.45s forwards;
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin: 0 auto 2.2rem;
+      font-size: 1.05rem;
+      color: #b8b0a4;
+      font-style: italic;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.55s forwards;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 0.65rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.7s forwards;
+    }
+
+    .badge {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 0.3rem 0.85rem;
+      color: #b8b0a4;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2rem; }
+    section:nth-child(even) { background: var(--parchment); }
+
+    .section-inner { max-width: 1080px; margin: 0 auto; }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.45rem;
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(1.9rem, 3.5vw, 2.75rem);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    .section-rule {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1rem 0 2.5rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-body p { margin-bottom: 1.2rem; color: var(--ink-soft); }
+
+    .about-sidebar {
+      border-left: 2px solid var(--rule);
+      padding-left: 2rem;
+    }
+
+    .about-sidebar h3 {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .focus-list { list-style: none; }
+
+    .focus-list li {
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .focus-list li::before {
+      content: '◆';
+      color: var(--gold);
+      font-size: 0.45rem;
+      flex-shrink: 0;
+    }
+
+    /* ── TEAM ── */
+    .pi-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2.5rem;
+      align-items: start;
+      border: 1px solid var(--rule);
+      padding: 2.2rem;
+      background: var(--cream);
+      margin-bottom: 2.5rem;
+    }
+
+    .pi-avatar {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--rule);
+      display: block;
+    }
+
+    .pi-avatar-placeholder {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: var(--parchment);
+      border: 3px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--display);
+      font-size: 2.4rem;
+      color: var(--ink-muted);
+      flex-shrink: 0;
+    }
+
+    .pi-role {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+
+    .pi-name {
+      font-family: var(--display);
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    .pi-bio { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 0.5rem; }
+
+    .pi-link {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .pi-link:hover { text-decoration: underline; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .member-card {
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      padding: 1.6rem 1.4rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    section:nth-child(even) .member-card { background: var(--cream); }
+
+    .member-card:hover {
+      box-shadow: 0 6px 26px rgba(0,0,0,0.09);
+      transform: translateY(-3px);
+    }
+
+    .member-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--parchment);
+      border: 2px solid var(--rule);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--display);
+      font-size: 1.4rem;
+      color: var(--ink-muted);
+    }
+
+    .member-name {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .member-role {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .member-bio { font-size: 0.87rem; color: var(--ink-muted); line-height: 1.6; }
+
+    .team-join {
+      margin-top: 2.5rem;
+      border: 1px dashed var(--rule);
+      padding: 1.5rem 2rem;
+      background: transparent;
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+      font-style: italic;
+    }
+
+    .team-join strong { color: var(--ink); font-style: normal; }
+
+    /* ── RESEARCH ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      border: 1px solid var(--rule);
+      padding: 2rem;
+      background: var(--cream);
+      transition: box-shadow 0.2s;
+    }
+
+    .project-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.09); }
+
+    .project-num {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.16em;
+      color: var(--rule);
+      margin-bottom: 0.7rem;
+    }
+
+    .project-card h3 {
+      font-family: var(--display);
+      font-size: 1.22rem;
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+    }
+
+    .project-card p {
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 0.18rem 0.55rem;
+      margin: 0.15rem 0.15rem 0 0;
+    }
+
+    /* ── PUBLICATIONS ── */
+    .pub-list { display: flex; flex-direction: column; }
+
+    .pub-item {
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 68px 1fr;
+      gap: 1.4rem;
+      align-items: start;
+    }
+
+    .pub-year {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--gold);
+      padding-top: 0.15rem;
+      text-align: right;
+    }
+
+    .pub-title {
+      font-family: var(--display);
+      font-size: 1.06rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+      line-height: 1.35;
+    }
+
+    .pub-authors {
+      font-style: italic;
+      font-size: 0.87rem;
+      color: var(--ink-muted);
+      margin-bottom: 0.18rem;
+    }
+
+    .pub-venue {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+    }
+
+    .pub-highlight { background: rgba(139,105,20,0.06); }
+
+    .pub-badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--cream);
+      padding: 0.1rem 0.45rem;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .scholar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 0.5rem 1rem;
+      margin-top: 2rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .scholar-link:hover { background: var(--accent); color: var(--cream); }
+
+    /* ── NEWS ── */
+    .news-list { display: flex; flex-direction: column; gap: 2rem; }
+
+    .news-item {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 1.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .news-date {
+      text-align: center;
+      padding: 0.55rem 0.4rem;
+      background: var(--ink);
+      color: var(--cream);
+      align-self: start;
+    }
+
+    .news-date .day {
+      font-family: var(--display);
+      font-size: 1.75rem;
+      font-weight: 300;
+      line-height: 1;
+      display: block;
+    }
+
+    .news-date .mon {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
+    .news-content h3 {
+      font-family: var(--display);
+      font-size: 1.18rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .news-content p { font-size: 0.92rem; color: var(--ink-soft); }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .contact-info h3 {
+      font-family: var(--display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p { color: var(--ink-soft); margin-bottom: 0.5rem; font-size: 0.95rem; }
+    .contact-info a { color: var(--accent); text-decoration: none; }
+    .contact-info a:hover { text-decoration: underline; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+
+    .form-group label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      padding: 0.65rem 0.85rem;
+      font-family: var(--body);
+      font-size: 0.95rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--ink);
+      color: var(--cream);
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.82rem 1.9rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+
+    .btn-primary:hover { background: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: #857d72;
+      text-align: center;
+      padding: 2.5rem 2rem;
+      font-size: 0.84rem;
+      border-top: 3px solid var(--gold);
+    }
+
+    footer a { color: var(--gold-light); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 820px) {
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about-sidebar { border-left: none; border-top: 2px solid var(--rule); padding-left: 0; padding-top: 1.5rem; }
+      .pi-card { grid-template-columns: 1fr; }
+      nav a { padding: 0 0.55rem; font-size: 0.68rem; }
+    }
+
+    @media (max-width: 600px) {
+      nav { display: none; }
+      .pub-item { grid-template-columns: 50px 1fr; }
+      .news-item { grid-template-columns: 76px 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-inner">
+    <a class="site-wordmark" href="#home"><span>Alvertis</span> Research Group</a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#team">Team</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<div class="hero" id="home">
+  <p class="hero-ornament">Est. 2026 · University of Texas at Austin</p>
+  <h1>Quantum Frontiers in<br><em>Condensed Matter &amp; Computing</em></h1>
+  <div class="hero-sub">Theoretical &amp; Computational Physics</div>
+  <div class="hero-rule"></div>
+  <p>We push the frontiers of our understanding of complex materials by employing a combination of quantum and classical computing.</p>
+  <div class="hero-badges">
+    <span class="badge">Department of Physics</span>
+    <span class="badge">Oden Institute</span>
+    <span class="badge">UT Austin</span>
+    <span class="badge">Austin, TX</span>
   </div>
 </div>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-label">01 — About</div>
+    <h2 class="section-title">Mission &amp; Vision</h2>
+    <div class="section-rule"></div>
+    <div class="about-grid">
+      <div class="about-body">
+        <p>We are interested in gaining a better understanding of the physics that appears in condensed matter, and in building theoretical models that can capture this physics. For these theoretical models to be truly predictive we often have to resort to using the power of supercomputers and quantum computers, as for realistic materials the interactions of electrons, photons, and vibrating atoms are typically too complicated to allow for a pen-and-paper solution.</p>
+        <p>We have dedicated great efforts towards understanding how so-called excited electronic states in solids can be controlled, using external handles such as temperature and pressure, and have developed efficient theoretical and computational approaches for accurately obtaining the properties of these states in a wide range of materials. Some of our predictions have led to minimizing energy losses in LEDs, understanding the mechanisms of efficient energy transfer, and predicting how excited electronic states can dissociate into free electrons that may be harnessed in solar cell devices.</p>
+        <p>Moreover, we develop ways of rigorously constructing theoretical models that retain only the essential characteristics of complex materials, yet capture the physics that is relevant to applications, and are also amenable to efficient solution on quantum computers. This will allow us to understand exotic phases of matter where the interactions between electrons and atomic motion is strong, and which pose a challenge to traditional methods of studying the electronic structure of materials.</p>
+      </div>
+      <aside class="about-sidebar">
+        <h3>Research Focus Areas</h3>
+        <ul class="focus-list">
+          <li>Excited electronic states in solids</li>
+          <li>Electron-phonon interactions</li>
+          <li>Quantum computing for materials</li>
+          <li>Downfolding &amp; model Hamiltonians</li>
+          <li>Strongly-correlated materials</li>
+          <li>High-performance classical computing</li>
+          <li>Organic semiconductors</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEAM ── -->
+<section id="team">
+  <div class="section-inner">
+    <div class="section-label">02 — People</div>
+    <h2 class="section-title">Our Team</h2>
+    <div class="section-rule"></div>
+
+    <!-- PI -->
+    <div class="pi-card">
+      <img class="pi-avatar" src="https://amalvertis.github.io/images/profile.jpg" alt="Antonios M. Alvertis" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="pi-avatar-placeholder" style="display:none;">AA</div>
+      <div>
+        <div class="pi-role">Principal Investigator</div>
+        <div class="pi-name">Prof. Antonios M. Alvertis</div>
+        <p class="pi-bio">Assistant Professor at the Department of Physics and the Oden Institute for Computational Engineering &amp; Sciences, University of Texas at Austin. His background is in theoretical and computational condensed matter physics. He received his Ph.D. from the University of Cambridge in 2021 (Cavendish Laboratory), was a postdoctoral researcher at UC Berkeley and Lawrence Berkeley National Lab (2021–2023), and a staff scientist at NASA Ames Research Center (2023–2025). His thesis was awarded the Cavendish Ph.D. Prize in Computational Physics and the Springer Thesis Prize, and was published in the Springer Theses series. His research has further been recognised with the 2024 Theoretical Physics award of the Academy of Athens, and he was a finalist for the international Volker Heine Early-Career Investigator Award.</p>
+        <a class="pi-link" href="mailto:antonios.alvertis@oden.utexas.edu">antonios.alvertis@oden.utexas.edu</a>
+        &nbsp;·&nbsp;
+        <a class="pi-link" href="https://scholar.google.co.uk/citations?user=1nxq0bkAAAAJ&hl=en" target="_blank">Google Scholar</a>
+        &nbsp;·&nbsp;
+        <a class="pi-link" href="https://amalvertis.github.io/CV_website.pdf" target="_blank">CV</a>
+      </div>
+    </div>
+
+    <!-- Other members -->
+    <div class="team-grid">
+      <div class="member-card">
+        <div class="member-avatar">PD</div>
+        <div class="member-role">Postdoctoral Researcher</div>
+        <div class="member-name">Position to be filled</div>
+        <p class="member-bio">Research interests and bio to be added.</p>
+      </div>
+      <div class="member-card">
+        <div class="member-avatar">GS</div>
+        <div class="member-role">PhD Student</div>
+        <div class="member-name">Position to be filled</div>
+        <p class="member-bio">Research interests and bio to be added.</p>
+      </div>
+      <div class="member-card">
+        <div class="member-avatar">GS</div>
+        <div class="member-role">PhD Student</div>
+        <div class="member-name">Position to be filled</div>
+        <p class="member-bio">Research interests and bio to be added.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── RESEARCH ── -->
+<section id="research">
+  <div class="section-inner">
+    <div class="section-label">03 — Research</div>
+    <h2 class="section-title">Projects &amp; Themes</h2>
+    <div class="section-rule"></div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-num">PROJECT · 001</div>
+        <h3>Excited Electronic States in Materials</h3>
+        <p>We develop theoretical and computational approaches to accurately compute the properties of excited electronic states (excitons) across a wide range of materials, exploring how temperature, pressure, and phonons influence their behaviour.</p>
+        <span class="tag">Excitons</span><span class="tag">BSE</span><span class="tag">First-principles</span>
+      </div>
+      <div class="project-card">
+        <div class="project-num">PROJECT · 002</div>
+        <h3>Quantum Computing for Strongly Correlated Matter</h3>
+        <p>We construct rigorously downfolded Hamiltonians from ab initio calculations that are compact enough for quantum computers, enabling the study of exotic phases of matter that challenge classical methods.</p>
+        <span class="tag">Quantum computing</span><span class="tag">VQE</span><span class="tag">Hubbard model</span>
+      </div>
+      <div class="project-card">
+        <div class="project-num">PROJECT · 003</div>
+        <h3>Electron–Phonon Interactions</h3>
+        <p>We investigate how the coupling between electrons and atomic vibrations governs energy transfer, exciton dissociation, and carrier dynamics in organic semiconductors, molecular crystals, and inorganic solids.</p>
+        <span class="tag">Electron-phonon</span><span class="tag">Organic semiconductors</span><span class="tag">Solar cells</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PUBLICATIONS ── -->
+<section id="publications">
+  <div class="section-inner">
+    <div class="section-label">04 — Publications</div>
+    <h2 class="section-title">Selected Works</h2>
+    <div class="section-rule"></div>
+    <div class="pub-list">
+
+      <div class="pub-item pub-highlight">
+        <div class="pub-year">2026</div>
+        <div>
+          <div class="pub-title">Ultrafast spontaneous exciton dissociation via phonon emission in BiVO<sub>4</sub></div>
+          <div class="pub-authors">Stephen E. Gant, Antonios M. Alvertis, Christopher J.N. Coveney, Jonah B. Haber, Marina R. Filip, Jeffrey B. Neaton</div>
+          <div class="pub-venue">Physical Review Research 8, 013105 (2026)</div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2025</div>
+        <div>
+          <div class="pub-title">Classical benchmarks for variational quantum eigensolver simulations of the Hubbard model</div>
+          <div class="pub-authors">Antonios M. Alvertis*, Abid Khan, Thomas Iadecola, Peter P. Orth, Norm M. Tubman</div>
+          <div class="pub-venue">Quantum 9, 1748 (2025)</div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2025</div>
+        <div>
+          <div class="pub-title">Compressing Hamiltonians with ab initio downfolding for simulating strongly-correlated materials on quantum computers</div>
+          <div class="pub-authors">Antonios M. Alvertis*, Abid Khan, Norm M. Tubman</div>
+          <div class="pub-venue">Physical Review Applied 23, 044028 (2025)</div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2024</div>
+        <div>
+          <div class="pub-title">Decoupling excitons from high-frequency vibrations in organic molecules</div>
+          <div class="pub-authors">Pratyush Ghosh, Antonios M. Alvertis, Rituparno Chowdhury, et al.</div>
+          <div class="pub-venue">Nature 629, 355 (2024)</div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2024</div>
+        <div>
+          <div class="pub-title">Phonon screening and dissociation of excitons at finite temperatures from first principles</div>
+          <div class="pub-authors">Antonios M. Alvertis, Jonah B. Haber, Zhenglu Li, Christopher J.N. Coveney, Steven G. Louie, Marina R. Filip, Jeffrey B. Neaton</div>
+          <div class="pub-venue">Proceedings of the National Academy of Sciences 121, e2403434121 (2024)</div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2024</div>
+        <div>
+          <div class="pub-title">Phonon screening of excitons in atomically thin semiconductors</div>
+          <div class="pub-authors">Woncheol Lee, Antonios M. Alvertis, Zhenglu Li, Steven Louie, Marina R. Filip, Jeffrey B. Neaton, Emmanouil Kioupakis</div>
+          <div class="pub-venue">Physical Review Letters 133, 206901 (2024)</div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2023</div>
+        <div>
+          <div class="pub-title">Phonon-induced exciton localization in molecular crystals from first principles <span class="pub-badge">Cover</span></div>
+          <div class="pub-authors">Antonios M. Alvertis*, Jonah B. Haber, Edgar A. Engel, Sahar Sharifzadeh, Jeffrey B. Neaton</div>
+          <div class="pub-venue">Physical Review Letters 130, 086401 (2023)</div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2022</div>
+        <div>
+          <div class="pub-title">Dielectric control of reverse intersystem crossing in thermally activated delayed fluorescence emitters</div>
+          <div class="pub-authors">Alexander J. Gillett, Anton Pershin, Raj Pandya, …, Antonios M. Alvertis, et al.</div>
+          <div class="pub-venue">Nature Materials 21, 1150 (2022)</div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2019</div>
+        <div>
+          <div class="pub-title">A Molecular Movie of Ultrafast Singlet Fission</div>
+          <div class="pub-authors">Christoph Schnedermann, Antonios M. Alvertis, Torsten Wende, Steven Lukman, et al.</div>
+          <div class="pub-venue">Nature Communications 10:4207 (2019)</div>
+        </div>
+      </div>
+
+    </div>
+    <a class="scholar-link" href="https://scholar.google.co.uk/citations?user=1nxq0bkAAAAJ&hl=en" target="_blank">
+      ↗ Full publication list on Google Scholar
+    </a>
+  </div>
+</section>
+
+<!-- ── NEWS ── -->
+<section id="news">
+  <div class="section-inner">
+    <div class="section-label">05 — News</div>
+    <h2 class="section-title">Latest Updates</h2>
+    <div class="section-rule"></div>
+    <div class="news-list">
+      <div class="news-item">
+        <div class="news-date">
+          <span class="day">01</span>
+          <span class="mon">Jan 2026</span>
+        </div>
+        <div class="news-content">
+          <h3>Alvertis Research Group Launches at UT Austin</h3>
+          <p>Prof. Antonios Alvertis joins the Department of Physics and the Oden Institute for Computational Engineering &amp; Sciences as an assistant professor. We are excited to begin building our group!</p>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">
+          <span class="day">01</span>
+          <span class="mon">Jan 2026</span>
+        </div>
+        <div class="news-content">
+          <h3>New Paper in Physical Review Research</h3>
+          <p>Our paper on ultrafast exciton dissociation via phonon emission in BiVO<sub>4</sub> is published in Physical Review Research (2026).</p>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">
+          <span class="day">—</span>
+          <span class="mon">2024</span>
+        </div>
+        <div class="news-content">
+          <h3>2024 Theoretical Physics Award — Academy of Athens</h3>
+          <p>Prof. Alvertis is honoured with the Theoretical Physics award of the Academy of Athens, recognising outstanding contributions to theoretical condensed matter physics.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">06 — Contact</div>
+    <h2 class="section-title">Get in Touch</h2>
+    <div class="section-rule"></div>
+    <div style="max-width:560px;">
+      <p style="color:var(--ink-soft); margin-bottom:2rem;">Whether you are a potential collaborator or simply curious about our work, feel free to reach out.</p>
+      <p style="margin-bottom:0.5rem;font-size:0.95rem;color:var(--ink-soft);"><strong style="color:var(--ink);">Address</strong><br>
+      Department of Physics &amp;<br>
+      Oden Institute for Computational Engineering &amp; Sciences<br>
+      University of Texas at Austin<br>
+      Austin, TX, USA</p>
+      <br>
+      <p style="font-size:0.95rem;color:var(--ink-soft);"><strong style="color:var(--ink);">Email</strong><br>
+      <a href="mailto:antonios.alvertis@oden.utexas.edu" style="color:var(--accent);text-decoration:none;">antonios.alvertis@oden.utexas.edu</a></p>
+      <br>
+      <p style="font-size:0.95rem;color:var(--ink-soft);"><strong style="color:var(--ink);">Personal Website</strong><br>
+      <a href="https://amalvertis.github.io" target="_blank" style="color:var(--accent);text-decoration:none;">amalvertis.github.io</a></p>
+      <br>
+      <p style="font-size:0.95rem;color:var(--ink-soft);"><strong style="color:var(--ink);">Google Scholar</strong><br>
+      <a href="https://scholar.google.co.uk/citations?user=1nxq0bkAAAAJ&hl=en" target="_blank" style="color:var(--accent);text-decoration:none;">View full publication list</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2026 Alvertis Research Group · Department of Physics &amp; Oden Institute · University of Texas at Austin ·
+  <a href="https://amalvertis.github.io" target="_blank">amalvertis.github.io</a></p>
+</footer>
+
+</body>
+</html>
